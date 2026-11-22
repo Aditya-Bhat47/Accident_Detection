@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -36,23 +37,42 @@ public class LoginPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_login_page);
+        setContentView(R.layout.activity_login_page);   // this file must contain btnSkip
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        session=new SessionManager(this);
-        tilEmail=findViewById(R.id.tilEmail);
-        tilPassword=findViewById(R.id.tilPassword);
-        etEmail=findViewById(R.id.etEmail);
-        etPassword=findViewById(R.id.etPassword);
-        btnLogin=findViewById(R.id.btnLogin);
+        session = new SessionManager(this);
+
+        tilEmail = findViewById(R.id.tilEmail);
+        tilPassword = findViewById(R.id.tilPassword);
+        etEmail = findViewById(R.id.etEmail);
+        etPassword = findViewById(R.id.etPassword);
+        btnLogin = findViewById(R.id.btnLogin);
 
         btnLogin.setOnClickListener(v -> attemptLogin());
         findViewById(R.id.tvRegister).setOnClickListener(v ->
                 startActivity(new Intent(this, RegisterPage.class)));
+
+        setupSkipButton();
+    }
+
+
+    private void setupSkipButton() {
+        MaterialButton btnSkip = findViewById(R.id.btnSkip);
+        if (btnSkip == null) {
+            Toast.makeText(this,
+                    "btnSkip is missing from activity_login_page.xml",
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+        btnSkip.setVisibility(View.VISIBLE);
+        btnSkip.setOnClickListener(v -> {
+            session.saveSession("debug-token", "Test User");
+            goToNextScreen();
+        });
     }
 
     private void attemptLogin() {
@@ -124,5 +144,4 @@ public class LoginPage extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
 }

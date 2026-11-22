@@ -7,7 +7,6 @@
     android:background="#FFFFFF"
     android:fillViewport="true">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,6 +18,7 @@
             android:id="@+id/imageView"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_marginTop="40dp"
             android:contentDescription="App Logo"
             app:srcCompat="@mipmap/icon" />
 
@@ -29,6 +29,7 @@
             android:layout_marginTop="16dp"
             android:text="Welcome Back"
             android:textColor="#D32F2F"
+            android:textSize="28sp"
             android:textStyle="bold" />
 
         <TextView
@@ -36,9 +37,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="32dp"
             android:text="Log in to keep your safety net active"
-            android:textColor="#757575" />
+            android:textColor="#757575"
+            android:textSize="14sp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilEmail"
@@ -85,6 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
@@ -103,6 +106,15 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-
+        <!-- Visible only in debug builds (controlled from LoginPage.java) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSkip"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="SKIP LOGIN (DEBUG ONLY)"
+            android:textColor="#9E9E9E"
+            android:visibility="gone" />
     </LinearLayout>
 </ScrollView>
