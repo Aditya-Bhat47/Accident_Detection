@@ -53,6 +53,8 @@ dependencies {
 
     // Lists
     implementation("androidx.recyclerview:recyclerview:1.3.2")
+
+    // Maps and location
     implementation("org.osmdroid:osmdroid-android:6.1.20")
     implementation("com.google.android.gms:play-services-location:21.3.0")
 }

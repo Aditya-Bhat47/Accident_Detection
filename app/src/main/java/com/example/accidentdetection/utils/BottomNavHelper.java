@@ -28,13 +28,10 @@ public class BottomNavHelper {
 
             Intent intent = new Intent(activity, target);
             if (id == R.id.nav_home) {
-                // Reuse the existing Home instead of stacking a new one
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             }
             activity.startActivity(intent);
             activity.overridePendingTransition(0, 0);
-
-            // Home stays alive underneath; other tabs replace each other
             if (!(activity instanceof MainActivity)) activity.finish();
             return true;
         });
